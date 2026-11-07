@@ -1,0 +1,89 @@
+{{define "content"}}
+<style>
+    .layout-split { display: flex; gap: 40px; align-items: flex-start; }
+    .filter-panel { width: 260px; flex-shrink: 0; }
+    .form-group { margin-bottom: 24px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: #111827; margin-bottom: 12px; }
+    .form-input { width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px; background-color: white; }
+    .side-nav-menu { display: flex; flex-direction: column; gap: 4px; }
+    .side-nav-item { padding: 12px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; color: #6b7280; cursor: pointer; transition: all 0.2s ease; }
+    .side-nav-item:hover { background-color: #f9fafb; color: #111827; }
+    .side-nav-item.active { background-color: #f5f3ff; color: #4f46e5; border-left: 3px solid #4f46e5; border-top-left-radius: 0; border-bottom-left-radius: 0; }
+    
+    .data-panel { flex: 1; }
+    .summary-section { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; }
+    .summary-total h3 { font-size: 14px; font-weight: 600; color: #111827; margin: 0 0 8px 0; }
+    .summary-total .big-number { font-size: 42px; font-weight: 400; color: #111827; line-height: 1; }
+    .summary-breakdown { font-size: 12px; color: #4b5563; min-width: 200px; padding-top: 24px; }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 4px; }
+    
+    .ingredient-list { display: flex; flex-direction: column; gap: 16px; }
+    .ingredient-card { background-color: #e5e5e5; border-radius: 8px; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .ingredient-info h4 { font-size: 16px; font-weight: 500; color: #111827; margin: 0 0 4px 0; }
+    .ingredient-info p { font-size: 12px; color: #6b7280; margin: 0; }
+    .ingredient-amount { font-size: 16px; font-weight: 500; color: #111827; }
+</style>
+
+<h1 class="page-title">Kebutuhan</h1>
+
+<div class="layout-split">
+    <div class="filter-panel">
+        <div class="form-group">
+            <label>Tanggal Pesanan</label>
+            <input type="date" class="form-input" value="2026-02-11">
+        </div>
+        <div class="side-nav-menu">
+            <div class="side-nav-item active">Kebutuhan Pangan</div>
+            <div class="side-nav-item">Daftar Belanja</div>
+        </div>
+    </div>
+
+    <div class="data-panel">
+        <div class="summary-section">
+            <div class="summary-total">
+                <h3>Total Porsi Pesanan</h3>
+                <div class="big-number">700</div>
+            </div>
+            <div class="summary-breakdown">
+                <div class="summary-row">
+                    <span>Nasi kotak A</span>
+                    <span>500 Porsi</span>
+                </div>
+                <div class="summary-row">
+                    <span>Nasi kotak B</span>
+                    <span>200 Porsi</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="ingredient-list">
+            <div class="ingredient-card">
+                <div class="ingredient-info">
+                    <h4>Beras</h4>
+                    <p>Konversi beli: karung 5 kg</p>
+                </div>
+                <div class="ingredient-amount">37,5 kg</div>
+            </div>
+            <div class="ingredient-card">
+                <div class="ingredient-info">
+                    <h4>Minyak Goreng</h4>
+                    <p>Konversi beli: 2 L</p>
+                </div>
+                <div class="ingredient-amount">3 L</div>
+            </div>
+            <div class="ingredient-card">
+                <div class="ingredient-info">
+                    <h4>Ayam</h4>
+                </div>
+                <div class="ingredient-amount">37,5 kg</div>
+            </div>
+            <div class="ingredient-card">
+                <div class="ingredient-info">
+                    <h4>Bumbu Dasar Kuning</h4>
+                </div>
+                <div class="ingredient-amount">37,5 kg</div>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}

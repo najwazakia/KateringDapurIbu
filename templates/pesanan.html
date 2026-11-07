@@ -1,0 +1,173 @@
+{{define "content"}}
+<style>
+    .page-title { font-size: 28px; font-weight: 600; margin-bottom: 24px; color: #111827; }
+    
+    .layout-split { display: flex; gap: 32px; align-items: flex-start; }
+    
+    /* Panel Kiri: Form Tambah Pesanan */
+    .form-panel { 
+        width: 340px; 
+        background-color: #e5e5e5; /* Menyesuaikan warna abu-abu mockup */
+        border-radius: 12px; 
+        padding: 24px; 
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    .form-panel h3 { font-size: 14px; font-weight: 700; margin-bottom: 24px; color: #111827; }
+    
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 12px; font-weight: 600; color: #6b7280; margin-bottom: 8px; }
+    .form-input { 
+        width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; 
+        border-radius: 6px; font-size: 13px; background-color: transparent; 
+        color: #4b5563;
+    }
+    .form-input:focus { outline: none; border-color: #4f46e5; background-color: white; }
+    .form-input::placeholder { color: #9ca3af; }
+    
+    .list-pesanan-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .list-pesanan-header label { margin: 0; font-size: 12px; font-weight: 600; color: #6b7280; }
+    .btn-icon-add { background: none; border: none; cursor: pointer; color: #111827; font-weight: bold; font-size: 18px; line-height: 1; }
+    
+    .input-row-labels { display: flex; gap: 8px; margin-bottom: 4px; }
+    .input-row-labels span { font-size: 11px; font-weight: 600; color: #6b7280; }
+    .input-row-labels .label-menu { flex: 1; }
+    .input-row-labels .label-porsi { width: 70px; }
+    
+    .input-row { display: flex; gap: 8px; margin-bottom: 24px; }
+    .input-row select { flex: 1; }
+    .input-row input { width: 70px; }
+    
+    .added-items { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .added-item { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #4b5563; }
+    .added-item .item-name { font-weight: 600; color: #4b5563; }
+    .added-item .item-right { display: flex; align-items: center; gap: 12px; }
+    .added-item .item-qty { color: #6b7280; font-size: 12px; }
+    .btn-trash { color: #6b7280; background: none; border: none; cursor: pointer; font-size: 14px; }
+    .btn-trash:hover { color: #dc2626; }
+    
+    .btn-submit-full { 
+        width: 100%; background-color: #3b07d6; color: white; border: none; 
+        padding: 14px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; 
+        margin-top: auto;
+    }
+    
+    /* Panel Kanan: Daftar Kartu Pesanan */
+    .order-list { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+    .order-card { 
+        background-color: #e5e5e5; /* Menyesuaikan warna abu-abu mockup */
+        border-radius: 12px; 
+        padding: 24px; 
+        position: relative;
+    }
+    .order-header { display: flex; justify-content: space-between; margin-bottom: 24px; }
+    .order-title h2 { font-size: 18px; margin: 0 0 4px 0; color: #4b5563; font-weight: 500; }
+    .order-title p { font-size: 12px; margin: 0; color: #6b7280; font-weight: 600; }
+    
+    .btn-icon-edit { background: none; border: none; cursor: pointer; color: #6b7280; font-size: 18px; }
+    
+    .order-details { font-size: 13px; color: #6b7280; margin-bottom: 32px; }
+    .order-details-title { font-weight: 700; margin-bottom: 12px; color: #6b7280; font-size: 12px; }
+    .order-item-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .order-item-row .item-name { font-weight: 500; }
+    
+    .order-actions { display: flex; justify-content: flex-end; gap: 12px; }
+    .btn-outline { 
+        background-color: white; color: #3b07d6; border: none; 
+        padding: 10px 20px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; 
+    }
+    .btn-primary-sm { 
+        background-color: #3b07d6; color: white; border: none; 
+        padding: 10px 20px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; 
+    }
+</style>
+
+<h1 class="page-title">Pesanan</h1>
+
+<div class="layout-split">
+    <!-- Panel Kiri: Form Tambah Pesanan -->
+    <div class="form-panel">
+        <h3>Tambah Pemesan</h3>
+        
+        <div class="form-group">
+            <label>Nama Pemesan</label>
+            <input type="text" class="form-input" placeholder="Masukkan nama pemesan">
+        </div>
+        
+        <div class="form-group">
+            <label>Tanggal Pesanan</label>
+            <input type="date" class="form-input" value="2026-02-11">
+        </div>
+        
+        <div class="list-pesanan-header">
+            <label>List Pesanan</label>
+            <button class="btn-icon-add">⊕</button>
+        </div>
+        
+        <!-- Label Menu dan Porsi -->
+        <div class="input-row-labels">
+            <span class="label-menu">Menu</span>
+            <span class="label-porsi">Porsi</span>
+        </div>
+        
+        <!-- Input Dropdown Menu dan Angka Porsi -->
+        <div class="input-row">
+            <select class="form-input">
+                <option>Nasi Kotak A</option>
+                <option>Nasi Kotak B</option>
+            </select>
+            <input type="number" class="form-input" placeholder="100">
+        </div>
+        
+        <div class="added-items">
+            <div class="added-item">
+                <span class="item-name">Nasi Kotak A</span>
+                <div class="item-right">
+                    <span class="item-qty">500 Porsi</span>
+                    <button class="btn-trash">🗑</button>
+                </div>
+            </div>
+            <div class="added-item">
+                <span class="item-name">Nasi Kotak B</span>
+                <div class="item-right">
+                    <span class="item-qty">200 Porsi</span>
+                    <button class="btn-trash">🗑</button>
+                </div>
+            </div>
+        </div>
+        
+        <button class="btn-submit-full">Tambah Pesanan</button>
+    </div>
+
+    <!-- Panel Kanan: Daftar Kartu Pesanan -->
+    <div class="order-list">
+        <div class="order-card">
+            <div class="order-header">
+                <div class="order-title">
+                    <h2>Bu Yuni</h2>
+                    <p>11 Februari 2026</p>
+                </div>
+                <button class="btn-icon-edit">✎</button>
+            </div>
+            
+            <div class="order-details">
+                <div class="order-details-title">Pesanan</div>
+                <div class="order-item-row">
+                    <span class="item-name">Nasi Kotak A</span>
+                    <span>500 Porsi</span>
+                </div>
+                <div class="order-item-row">
+                    <span class="item-name">Nasi Kotak B</span>
+                    <span>200 Porsi</span>
+                </div>
+            </div>
+            
+            <div class="order-actions">
+                <button class="btn-outline">Hitung Kebutuhan</button>
+                <button class="btn-primary-sm">Pesanan Selesai</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}
